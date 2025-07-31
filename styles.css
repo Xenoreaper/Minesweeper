@@ -1,0 +1,241 @@
+@font-face {
+    font-family: "Roboto";
+    src: url(fonts/roboto.ttf) format("truetype");
+}
+
+:root {
+    --title-color: #b0c3ab;
+    --playfield-color: #807F7E;
+    --cell-color: #cbc9c8;
+    --footer-color: #98C2F0;
+
+    --shadow-size: 3px;
+    --shadow-color: #575656;
+    --highlight-color: #FAF8F7;
+
+    --hover-color: #A8A7A7;
+
+    --playfield-size: 9;
+    --cell-spacing: 2px;
+}
+
+* {
+    margin: 0;
+    font-family: 'Roboto', Arial, Helvetica, sans-serif;
+    user-select: none;
+}
+
+header {
+    background-color: var(--title-color);
+    height: 25%;
+    color: #000;
+}
+
+@media (min-width: 700px) {
+    header {
+        background-image: url(images/header-background.webp);
+        background-size: cover;
+        text-shadow: 2px 2px 0 #000, -2px 2px 0 #000, 2px -2px 0 #000, -2px -2px 0 #000;
+        color: #fff;
+    }
+
+    /*text interessant machen*/
+    header p:hover, header h1:hover {
+        color: #000;
+        text-shadow: 2px 2px 0 #fff, -2px 2px 0 #fff, 2px -2px 0 #fff, -2px -2px 0 #fff;
+        mix-blend-mode: difference;
+        filter: invert(1);
+    }
+
+}
+
+.title-field {
+    padding: 7.5%;
+}
+
+#playfield {
+    position: relative;
+    background-color: var(--playfield-color);
+    height: 50%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: space-between;
+    align-content: space-between;
+}
+
+#buttons {
+    background-color: var(--title-color);
+    height: 20%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#buttons button {
+    border-radius: 15px;
+    height: 50%;
+    width: 25%;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+#buttons button:hover {
+    filter:brightness(75%);
+}
+
+footer {
+    background-color: var(--footer-color);
+    height: 5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer-field a {
+    cursor: pointer;
+}
+
+.cell {
+    background-color: var(--cell-color);
+    border-left: var(--highlight-color) solid var(--shadow-size);
+    border-top: var(--highlight-color) solid var(--shadow-size);
+    border-right: var(--shadow-color) solid var(--shadow-size);
+    border-bottom: var(--shadow-color) solid var(--shadow-size);
+    width: calc(100%/var(--playfield-size) - (2*var(--shadow-size)));
+    height: calc(100%/var(--playfield-size) - (2*var(--shadow-size)));
+    flex-shrink: 0;
+}
+
+.uncovered:not(.cell-sym-0) {
+    /*border: rgba(0, 0, 0, 0) solid var(--shadow-size);*/
+    width: calc(100%/var(--playfield-size) - (2px));
+    height: calc(100%/var(--playfield-size) - (2px));
+    border: var(--playfield-color) solid 1px;
+}
+/*Number 1*/
+.cell-sym-1 {
+    background-image: url(images/minesweeper-icons.svg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 0%;
+}
+/*Number 2*/
+.cell-sym-2 {
+    background-image: url(images/minesweeper-icons.svg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 11%;
+}
+/*Number 3*/
+.cell-sym-3 {
+    background-image: url(images/minesweeper-icons.svg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 22%;
+}
+/*Number 4*/
+.cell-sym-4 {
+    background-image: url(images/minesweeper-icons.svg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 33%;
+}
+/*Number 5*/
+.cell-sym-5 {
+    background-image: url(images/minesweeper-icons.svg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 44%;
+}
+/*Number 6*/
+.cell-sym-6 {
+    background-image: url(images/minesweeper-icons.svg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 55%;
+}
+/*Number 7*/
+.cell-sym-7 {
+    background-image: url(images/minesweeper-icons.svg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 66%;
+}
+/*Number 8*/
+.cell-sym-8 {
+    background-image: url(images/minesweeper-icons.svg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 77%;
+}
+/*Marker (Rat)*/
+.cell-sym-9 {
+    background-image: url(images/marker-rat.svg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: var(--cell-color);
+}
+/*Mine*/
+.cell-sym-0 {
+    background-image: url(images/mine.svg);
+    background-color: var(--playfield-color);
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-left: var(--shadow-color) solid var(--shadow-size);
+    border-top: var(--shadow-color) solid var(--shadow-size);
+    border-right: var(--highlight-color) solid var(--shadow-size);
+    border-bottom: var(--highlight-color) solid var(--shadow-size);
+}
+
+.clicked-mine{
+    background-color: red;
+}
+
+/*Highlight hovered cell*/
+.cell:hover:not(.uncovered) {
+    background-color: var(--hover-color);
+}
+.cell:hover:not(.cell-sym-9):not(.uncovered) {
+    cursor: pointer;
+}
+
+html, body {
+    height: 100%;
+    background-color: #000;
+}
+/*Stump, didn't want to remove to highlight should anything go wrong after all*/
+#content {
+    width: min(100vw, 50vh);
+    height: min(100vh, 200vw);
+    background-color: orange;
+    margin: 0 auto;
+}
+
+.overlay {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    align-content: center;
+    justify-content: center;
+}
+
+.overlay-box {
+    border: var(--highlight-color) solid 3px;
+    background-color: #fff;
+    padding: 25px;
+    border-radius: 15px;
+    font-size: 2em;
+    align-content: center;
+    text-align: center;
+}
+
+#playfield:not(:hover) .overlay {
+    display: none;
+}
